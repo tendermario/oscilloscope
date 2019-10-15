@@ -1,0 +1,15 @@
+{
+  "name": "oscillo",
+  "version": "1.0.0",
+  "description": "make wiggly lines with sound",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["oscilloscope", "threejs", "visualizer"],
+  "author": "Mario Viens, Mitchell Burton",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
