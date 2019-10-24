@@ -26,8 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
   scene.add(light)
 
   const updateObjects = () => {
-    cube.rotation.x += .01
-    cube.rotation.y += .01
+    position++
+
+    if (position >= dataArray.length) {
+      position = 0
+    }
+
+    cube.rotation.x = dataArray[position] / 100
+    // cube.rotation.y += .01
   }
 
   let x = 100
@@ -38,12 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let position = 0;
+
   // 6. Run the renderer
   const animate = () => {
     requestAnimationFrame(animate)
 
     // Audio
-    analyser.getByteTimeDomainData(dataArray)
+
     doOnceASecond(() => console.log(dataArray))
 
     // Visual
@@ -59,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
   startButton.addEventListener('mousedown', () => {
     // Make sound
     oscillator.start()
+    setTimeout(() => {
+      analyser.getByteTimeDomainData(dataArray)
+    }, 1000);
     startButton.remove();
   })
 })
