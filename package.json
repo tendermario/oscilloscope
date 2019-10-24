@@ -13,6 +13,7 @@
   ],
   "author": "Mario Viens, Mitchell Burton",
   "license": "MIT",
+  "node": "12.13.0",
   "dependencies": {
     "express": "^4.17.1"
   }
