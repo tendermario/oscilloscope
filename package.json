@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["oscilloscope", "threejs", "visualizer"],
+  "keywords": [
+    "oscilloscope",
+    "threejs",
+    "visualizer"
+  ],
   "author": "Mario Viens, Mitchell Burton",
   "license": "MIT",
   "dependencies": {
