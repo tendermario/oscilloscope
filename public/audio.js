@@ -2,7 +2,7 @@
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
 // create Oscillator node
-const oscillator = audioCtx.createOscillator()
+export const oscillator = audioCtx.createOscillator()
 
 // ∿∿∿
 oscillator.type = 'sine'
@@ -10,7 +10,7 @@ oscillator.type = 'sine'
 // Frequencies
 const g = '392'
 const other = '240'
-frequency = other  // value in hertz
+const frequency = other  // value in hertz
 
 // Set the frequency to play right now to be this frequency
 oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime)
@@ -23,13 +23,13 @@ oscillator.connect(audioCtx.destination)
 // Lets just hard code the oscillator as our source for now...
 const source = oscillator
 // Analyzer for looking at the audio
-const analyser = audioCtx.createAnalyser()
+export const analyser = audioCtx.createAnalyser()
 // Connect to it
 source.connect(analyser)
 
 // Amount of data points we have
 var bufferLength = 180
 // Create array to store data
-var dataArray = new Uint8Array(bufferLength)
+export const dataArray = new Uint8Array(bufferLength)
 
 analyser.getByteTimeDomainData(dataArray)

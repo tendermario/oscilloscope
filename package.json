@@ -4,7 +4,9 @@
   "description": "make wiggly lines with sound",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "keywords": [
     "oscilloscope",
@@ -15,6 +17,10 @@
   "license": "MIT",
   "node": "12.13.0",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "three": "^0.109.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }

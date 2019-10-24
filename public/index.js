@@ -1,3 +1,7 @@
+import * as THREE from 'three'
+
+import {analyser, dataArray, oscillator} from './audio'
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Create the scene
   const scene = new THREE.Scene()
