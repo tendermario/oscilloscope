@@ -1,3 +1,5 @@
+const path = require('path')
+
 var express = require('express')
 var app = express()
 
@@ -6,7 +8,7 @@ var port = 3001;
 app.use(express.static('public'))
 
 app.get('/', function (req, res) {
-    res.send('hello world')
+    res.sendFile(path.join(__dirname + '/index.html'))
 })
 
 app.listen(port, function () {
