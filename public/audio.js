@@ -18,10 +18,6 @@ oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime)
 // Default destination is the speakers
 oscillator.connect(audioCtx.destination)
 
-// Make sound
-oscillator.start()
-
-
 // Visualizer //
 
 // Lets just hard code the oscillator as our source for now...
@@ -32,7 +28,7 @@ const analyser = audioCtx.createAnalyser()
 source.connect(analyser)
 
 // Amount of data points we have
-var bufferLength = analyser.frequencyBinCount
+var bufferLength = 180
 // Create array to store data
 var dataArray = new Uint8Array(bufferLength)
 
