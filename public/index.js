@@ -24,14 +24,31 @@ const light = new THREE.PointLight(0xffff00)
 light.position.set(10, 0, 25)
 scene.add(light)
 
+const updateObjects = () => {
+  cube.rotation.x += .01
+  cube.rotation.y += .01
+}
+
+let x = 100
+const doOnceASecond = (cb) => {
+  if (--x < 1) {
+    x = 100
+    cb()
+  }
+}
+
+
 // 6. Run the renderer
 const animate = () => {
   requestAnimationFrame(animate)
 
-  cube.rotation.x += .01
-  cube.rotation.y += .01
-  camera.updateProjectionMatrix()
+  // Audio
+  analyser.getByteTimeDomainData(dataArray)
+  doOnceASecond(() => console.log(dataArray))
 
+  // Visual
+  updateObjects()
+  camera.updateProjectionMatrix()
   renderer.render(scene, camera)
 }
 
