@@ -2,7 +2,7 @@ import * as THREE from 'three'
 
 import Oscilloscope from './audio'
 
-const DEFAULT_FREQS = ['240']
+const DEFAULT_FREQS = ['240', '240', '240']
 
 const CAMERA_ARGS = [75, window.innerWidth/window.innerHeight, 0.1, 1000]
 const CAMERA_Z_POS = 10
@@ -41,23 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
   light.position.set(...LIGHT_POS)
   scene.add(light)
 
-  const updateObjects = dataArray => {
+  const updateObjects = dataArrays => {
     position++
 
-    if (position >= dataArray.length) {
+    if (dataArrays.length > 0 && position >= dataArrays[0].length) {
       position = 0
     }
 
-    if (dataArray.length === 0) {
+    if (dataArrays.length === 0 || dataArrays.some(da => da.length === 0)) {
       return
     }
 
-    cube.rotation.x = dataArray[position] / 100
-    // cube.rotation.y += .01
+    ['x', 'y', 'z'].forEach((coord, i) => {
+      cube.position[coord] = (dataArrays[i][position] - 128) / 100
+    })
+
+    cube.rotation.x += .01
+    cube.rotation.y += .01
+    cube.rotation.z += .01
   }
 
   let position = 0
-  let dataArray = []
+  let dataArrays = []
 
   // 6. Run the renderer
   const animate = () => {
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Visual
-    updateObjects(dataArray)
+    updateObjects(dataArrays)
     camera.updateProjectionMatrix()
     renderer.render(scene, camera)
   }
@@ -79,7 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     oscilloscope.start()
 
     setTimeout(() => {
-      dataArray = oscilloscope.getByteTimeDomainData()[0]
+      dataArrays = oscilloscope.getByteTimeDomainData()
+      console.log(dataArrays)
     }, 1000);
     startButton.remove();
   })
